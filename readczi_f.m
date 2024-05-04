@@ -1,6 +1,9 @@
 function out = readczi_f(path2file)
-% Bonheur et al., 2022
+% Updated 2024/05/01 to accommodate importing LIF files.
+% Originally readczi_f
 %
+% Bonheur et al., 2022
+% 
 % Read .czi files using bio-formats. 10/22/2018 Daisuke
 % Change 180630 version so that the input is file path.
 % Output is a struct with fields, filepath, images, num of zslices, and num
@@ -9,7 +12,34 @@ function out = readczi_f(path2file)
 % Downloaded bfmatlab.zip from OME website and added the folder to MATLAB
 % path
 
-data = bfopen(path2file);
+
+%%%%%% data = bfopen(path2file);
+%%%%%% 2024/05/02 Replaced the line above with following section %%%%%%
+oridata = bfopen(path2file);
+[~,~,ext] = fileparts(path2file);
+
+switch ext
+    case '.lif'
+        nseries = size(oridata,1);
+        answer = inputdlg(['LIF file: Enter # between 1 and ',num2str(nseries)],...
+            'Enter series# to analyze');
+        ans_num = str2double(answer);
+        if isempty(ans_num)
+            errordlg(['Need to enter series# between 1 and ',num2str(nseries)]);
+            return
+        elseif ans_num>nseries || ans_num<1
+            errordlg(['Need to enter series# between 1 and ',num2str(nseries)]);
+            return
+        end
+        data = oridata(ans_num,1);
+    case '.czi'
+        data = oridata;
+    otherwise
+        errordlg('File format not supported: use CZI or LIF');
+        return
+end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 %% Parse data
 % data{1} contains all images and associated parameters. 
@@ -46,7 +76,4 @@ out.filepath = path2file;
 out.images = images;
 out.num_zslice = num_z;
 out.num_channel = num_c;
-
-
-
-    
+end
