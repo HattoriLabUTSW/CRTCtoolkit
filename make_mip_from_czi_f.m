@@ -16,6 +16,8 @@ function make_mip_from_czi_f(channel2color)
 colororder = channel2color;
 currfolder = pwd;
 czifiles = dir('*.czi');
+liffiles = dir('*.lif');
+czifiles = [czifiles, liffiles];
 
 for n = 1:length(czifiles)
     currfile = czifiles(n).name;
