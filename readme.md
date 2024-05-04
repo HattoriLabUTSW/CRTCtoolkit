@@ -1,9 +1,5 @@
 # CRTC Toolkit
 
-<<<<<<< HEAD
-The CRTC Toolkit provides a series of applications which allow for annotating and collecting individual cells from microscopy images, segmenting those cells into nuclear and cytoplasmic regions, and performing data analysis using the relative expression levels of CRTC in each region. The toolkit is provided as a set of compiled MATLAB apps, with source code available for modification and further scripting of the pipeline and workflows.
-
-=======
 Toolkit for CRTC data visualization and analysis
 
 The CRTC Toolkit provides a series of applications which allow for annotating and collecting individual cells from microscopy images, segmenting those cells into nuclear and cytoplasmic regions, and performing data analysis using the relative expression levels of CRTC in each region. The toolkit is provided as a set of compiled MATLAB apps, with source code available for modification and further scripting of the pipeline and workflows.
@@ -84,4 +80,3 @@ The `Open .fig File App` provides a simple convenience tool to reopen saved `.fi
 If you have access to a MATLAB license, the raw source code provides a powerful interface to modify the toolkit to optimally fit your workflow. The CRTC toolkit has been created and tested using MATLAB version R2021b. Necessary add-ons and packages are listed in the `analyzeCRTC.m` file, which also provides a well-documented guide to scripting the different components of the toolkit. 
 
 Many intermediate steps of the toolkit generate `.mat` files, which can be examined and interacted with using MATLAB.
->>>>>>> 9004afa629017d7710183e64a85aa70262b2fb7b
